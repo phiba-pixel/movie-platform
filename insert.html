@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Add Movie</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="page">
+
+
+    <!-- BANNER -->
+
+    <div class="small-banner">
+
+        <div>
+
+            <p class="eyebrow">
+                MOVIE LIBRARY
+            </p>
+
+            <h1>Add a movie</h1>
+
+            <p>
+                Save something new to your watchlist.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <div class="form-card">
+
+        <form method="POST" action="/add_movie">
+
+
+            <label>Movie Title</label>
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter movie name"
+                required
+            >
+
+
+            <label>Genre</label>
+
+            <input
+                type="text"
+                name="genre"
+                placeholder="e.g. Fantasy, Horror, Comedy"
+            >
+
+
+            <label>Rating</label>
+
+            <select name="rating">
+
+                <option value="1">★</option>
+                <option value="2">★★</option>
+                <option value="3">★★★</option>
+                <option value="4">★★★★</option>
+                <option value="5">★★★★★</option>
+
+            </select>
+
+
+            <label>Status</label>
+
+            <select name="status">
+
+                <option value="Planning to Watch">
+                    Planning to Watch
+                </option>
+
+                <option value="Watched">
+                    Watched
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                Add Movie
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <a class="back-link" href="/">
+        ← Back to movie library
+    </a>
+
+
+</div>
+
+</body>
+</html>
