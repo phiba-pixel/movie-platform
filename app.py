@@ -117,14 +117,15 @@ def movie():
 def add_movie():
 
     title = request.form["title"]
-    genre = request.form["genre"]
-    rating = request.form["rating"]
-    status = request.form["status"]
+genre = request.form["genre"]
+rating = request.form["rating"]
+status = request.form["status"]
+image_url = request.form["image_url"]
 
-    cursor.execute("""
-        INSERT INTO movies(title, genre, rating, status)
-        VALUES (%s, %s, %s, %s)
-    """, (title, genre, rating, status))
+cursor.execute("""
+    INSERT INTO movies(title, genre, rating, status, image_url)
+    VALUES (%s, %s, %s, %s, %s)
+""", (title, genre, rating, status, image_url))
 
     conn.commit()
 
@@ -170,19 +171,20 @@ def edit_movie(id):
 def update_movie(id):
 
     title = request.form["title"]
-    genre = request.form["genre"]
-    rating = request.form["rating"]
-    status = request.form["status"]
+genre = request.form["genre"]
+rating = request.form["rating"]
+status = request.form["status"]
+image_url = request.form["image_url"]
 
-    cursor.execute("""
-        UPDATE movies
-        SET title = %s,
-            genre = %s,
-            rating = %s,
-            status = %s
-        WHERE id = %s
-    """, (title, genre, rating, status, id))
-
+cursor.execute("""
+    UPDATE movies
+    SET title = %s,
+        genre = %s,
+        rating = %s,
+        status = %s,
+        image_url = %s
+    WHERE id = %s
+""", (title, genre, rating, status, image_url, id))
     conn.commit()
 
     return redirect("/")
