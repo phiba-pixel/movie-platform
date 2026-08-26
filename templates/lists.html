@@ -120,11 +120,26 @@
         <div class="movie-card">
 
 
-            <!-- MOVIE ICON -->
+            <!-- MOVIE POSTER -->
+            
+            <div class="movie-poster">
 
-            <div class="movie-icon">
-                🎬
-            </div>
+    {% if movie[5] %}
+
+        <img
+            src="{{ movie[5] }}"
+            alt="{{ movie[1] }} poster"
+        >
+
+    {% else %}
+
+        <div class="movie-icon">
+            🎬
+        </div>
+
+    {% endif %}
+
+</div>
 
 
             <!-- MOVIE INFORMATION -->
