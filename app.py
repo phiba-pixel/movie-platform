@@ -17,11 +17,15 @@ id SERIAL PRIMARY KEY,
 title TEXT NOT NULL,
 genre TEXT,
 rating TEXT,
-status TEXT
+status TEXT,
+image_url TEXT
 )
 """)
 
-conn.commit()
+cursor.execute("""
+ALTER TABLE movies
+ADD COLUMN IF NOT EXISTS image_url TEXT
+""")
 # ---------------- HOME / MOVIE LIST ----------------
 
 @app.route("/")
