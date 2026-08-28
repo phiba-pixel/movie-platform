@@ -185,9 +185,9 @@ cursor.execute("""
         image_url = %s
     WHERE id = %s
 """, (title, genre, rating, status, image_url, id))
-    conn.commit()
+conn.commit()
 
-    return redirect("/")
+return redirect("/")
 
 
 # ---------------- RUN APP ----------------
