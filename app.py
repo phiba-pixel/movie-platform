@@ -127,9 +127,9 @@ cursor.execute("""
     VALUES (%s, %s, %s, %s, %s)
 """, (title, genre, rating, status, image_url))
 
-    conn.commit()
+conn.commit()
 
-    return redirect("/")
+return redirect("/")
 
 
 # ---------------- DELETE MOVIE ----------------
