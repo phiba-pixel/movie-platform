@@ -122,14 +122,14 @@ rating = request.form["rating"]
 status = request.form["status"]
 image_url = request.form["image_url"]
 
-cursor.execute("""
+    cursor.execute("""
     INSERT INTO movies(title, genre, rating, status, image_url)
     VALUES (%s, %s, %s, %s, %s)
 """, (title, genre, rating, status, image_url))
 
-conn.commit()
+    conn.commit()
 
-return redirect("/")
+    return redirect("/")
 
 
 # ---------------- DELETE MOVIE ----------------
@@ -176,7 +176,7 @@ rating = request.form["rating"]
 status = request.form["status"]
 image_url = request.form["image_url"]
 
-cursor.execute("""
+    cursor.execute("""
     UPDATE movies
     SET title = %s,
         genre = %s,
@@ -187,7 +187,7 @@ cursor.execute("""
 """, (title, genre, rating, status, image_url, id))
 conn.commit()
 
-return redirect("/")
+    return redirect("/")
 
 
 # ---------------- RUN APP ----------------
