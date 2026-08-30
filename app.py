@@ -11,21 +11,27 @@ conn = psycopg2.connect(
 
 cursor = conn.cursor()
 
+# Create movies table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS movies (
-id SERIAL PRIMARY KEY,
-title TEXT NOT NULL,
-genre TEXT,
-rating TEXT,
-status TEXT,
-image_url TEXT
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    genre TEXT,
+    rating TEXT,
+    status TEXT,
+    image_url TEXT
 )
 """)
 
+# Add image_url column if an older table already exists
 cursor.execute("""
 ALTER TABLE movies
 ADD COLUMN IF NOT EXISTS image_url TEXT
 """)
+
+conn.commit()
+
+
 # ---------------- HOME / MOVIE LIST ----------------
 
 @app.route("/")
@@ -117,15 +123,15 @@ def movie():
 def add_movie():
 
     title = request.form["title"]
-genre = request.form["genre"]
-rating = request.form["rating"]
-status = request.form["status"]
-image_url = request.form["image_url"]
+    genre = request.form["genre"]
+    rating = request.form["rating"]
+    status = request.form["status"]
+    image_url = request.form.get("image_url", "")
 
     cursor.execute("""
-    INSERT INTO movies(title, genre, rating, status, image_url)
-    VALUES (%s, %s, %s, %s, %s)
-""", (title, genre, rating, status, image_url))
+        INSERT INTO movies(title, genre, rating, status, image_url)
+        VALUES (%s, %s, %s, %s, %s)
+    """, (title, genre, rating, status, image_url))
 
     conn.commit()
 
@@ -171,21 +177,22 @@ def edit_movie(id):
 def update_movie(id):
 
     title = request.form["title"]
-genre = request.form["genre"]
-rating = request.form["rating"]
-status = request.form["status"]
-image_url = request.form["image_url"]
+    genre = request.form["genre"]
+    rating = request.form["rating"]
+    status = request.form["status"]
+    image_url = request.form.get("image_url", "")
 
     cursor.execute("""
-    UPDATE movies
-    SET title = %s,
-        genre = %s,
-        rating = %s,
-        status = %s,
-        image_url = %s
-    WHERE id = %s
-""", (title, genre, rating, status, image_url, id))
-conn.commit()
+        UPDATE movies
+        SET title = %s,
+            genre = %s,
+            rating = %s,
+            status = %s,
+            image_url = %s
+        WHERE id = %s
+    """, (title, genre, rating, status, image_url, id))
+
+    conn.commit()
 
     return redirect("/")
 
