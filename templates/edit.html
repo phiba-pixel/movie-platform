@@ -64,6 +64,10 @@
                 value="{{ movie[2] }}"
             >
 
+            <label>Description</label>
+            <textarea name="description" rows="4"
+            placeholder="Write a short description...">{{movie[6] or ''}}</textarea>
+
             <label>Movie Poster Image URL</label>
 
             <input
