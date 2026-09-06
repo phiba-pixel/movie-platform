@@ -151,9 +151,10 @@ def movie_details(id):
         (id,)
     )
 
-movie = cursor.fetchone()
-return render_template(
-    "movie_details.html",
+    movie = cursor.fetchone()
+    
+    return render_template(
+        "movie_details.html",
     movie=movie
 )
 # ---------------- DELETE MOVIE ----------------
