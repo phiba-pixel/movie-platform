@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{movie[1] }}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')  }}">
+  </head>
+  <body>
+    <div class="movie-details">
+      {% if movie[5]%}
+      <div class="movie-poster">
+        <img src="{{movie[5] }}" alt="{{movie[1] }}">
+      </div>
+      {% endif %}
+
+      <h1>{{movie[1]}}</h1>
+      <p><strong>Genre:</strong>{{movie[2]}}</p>
+      <p><strong>Rating:</strong>⭐{{movie[3]}}/5</p>
+      <p><strong>Status:</strong>{{movie[4]}}</p>
+      <h2>Description</h2>
+      <p>{{movie[6] or "No description available." }}</p>
+
+      <div>
+        <a href="#" class="watch-button">▶ Watch</a>
+        <a href="#" class="download-button">↓  Download</a>
+      </div>
+
+      <a href="/">← Back To Library</a>
+
+    </div>
+  </body>
+</html>
