@@ -142,7 +142,20 @@ def add_movie():
 
     return redirect("/")
 
+#---------------MOVIE DETAILS-------------
+@app.route("/movie/<int:id>")
+def movie_details(id):
 
+    cursor.execute(
+        "SELECT * FROM movies WHERE id = %s",
+        (id,)
+    )
+
+movie = cursor.fetchone()
+return render_template(
+    "movie_details.html",
+    movie=movie
+)
 # ---------------- DELETE MOVIE ----------------
 
 @app.route("/delete/<int:id>")
