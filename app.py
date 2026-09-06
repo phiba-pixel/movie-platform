@@ -28,6 +28,10 @@ cursor.execute("""
 ALTER TABLE movies
 ADD COLUMN IF NOT EXISTS image_url TEXT
 """)
+cursor.execute("""
+ALTER TABLE movies
+ADD COLUMN IF NOT EXISTS description TEXT
+""")
 
 conn.commit()
 
@@ -127,11 +131,12 @@ def add_movie():
     rating = request.form["rating"]
     status = request.form["status"]
     image_url = request.form.get("image_url", "")
+    description = request.form.get("description","")
 
     cursor.execute("""
-        INSERT INTO movies(title, genre, rating, status, image_url)
-        VALUES (%s, %s, %s, %s, %s)
-    """, (title, genre, rating, status, image_url))
+        INSERT INTO movies(title, genre, rating, status, image_url, description)
+        VALUES (%s, %s, %s, %s, %s, %s)
+    """, (title, genre, rating, status, image_url, description))
 
     conn.commit()
 
@@ -181,6 +186,7 @@ def update_movie(id):
     rating = request.form["rating"]
     status = request.form["status"]
     image_url = request.form.get("image_url", "")
+    description = request.form.get("description","")
 
     cursor.execute("""
         UPDATE movies
@@ -188,9 +194,10 @@ def update_movie(id):
             genre = %s,
             rating = %s,
             status = %s,
-            image_url = %s
+            image_url = %s,
+            description = %s
         WHERE id = %s
-    """, (title, genre, rating, status, image_url, id))
+    """, (title, genre, rating, status, image_url, description, id))
 
     conn.commit()
 
