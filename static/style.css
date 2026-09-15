@@ -1,40 +1,76 @@
-* {
-    box-sizing: border-box;
+
+.movie-section {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 50px;
+    background-color: #8E1616;
+    margin: 30px 40px;
+    border-radius: 10px;
+    color: #fff;
 }
 
-
-body {
-    margin: 0;
-
-    font-family: Arial, sans-serif;
-
-    background: #f7f6f3;
-
-    color: #37352f;
+.movie-poster {
+    flex: 1;
+    text-align: center;
 }
 
-
-/* PAGE */
-
-.page {
-    width: 90%;
-
-    max-width: 1100px;
-
-    margin: 40px auto;
+.movie-poster img {
+    width: 300px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
+.movie-info {
+    flex: 1;
+}
 
-/* MAIN BANNER */
+.movie-info h1 {
+    font-size: 48px;
+    margin-bottom: 25px;
+}
 
-.banner {
-    min-height: 240px;
+.movie-info p {
+    font-size: 18px;
+    line-height: 1.6;
+}
 
-    border-radius: 12px;
+.description {
+    margin-top: 25px;
+}
 
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.15),
+.buttons {
+    margin-top: 30px;
+}
+
+.watch-button,
+.download-button {
+    display: inline-block;
+    padding: 12px 30px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.watch-button {
+    background-color: #d8507c;
+    color: white;
+}
+
+.download-button {
+    background-color: white;
+    color: #8E1616;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin: 30px;
+    color: #555;
+    text-decoration: none;
+}            rgba(0, 0, 0, 0.15),
             rgba(0, 0, 0, 0.15)
         ),
         linear-gradient(
