@@ -1,96 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>{{ movie[1] }}</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
 
 <body>
 
-    <header class="main-header">
+<div class="page">
 
-        <nav class="nav-bar">
 
-            <div class="logo">
-                Movie Platform
-            </div>
+    <!-- HEADER -->
 
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-            </ul>
+    <header class="details-header">
 
-        </nav>
+        <div class="details-logo">
+            Movie Platform 🎬
+        </div>
+
+        <a href="/" class="details-home">
+            Home
+        </a>
 
     </header>
 
 
-    <main>
+    <!-- MOVIE DETAILS -->
 
-        <section class="movie-section">
+    <section class="details-section">
 
-            <div class="movie-poster">
 
-                {% if movie[5] %}
-                    <img src="{{ movie[5] }}" alt="{{ movie[1] }}">
-                {% endif %}
+        <!-- POSTER -->
+
+        <div class="details-poster">
+
+            {% if movie[5] %}
+
+                <img
+                    src="{{ movie[5] }}"
+                    alt="{{ movie[1] }} poster"
+                >
+
+            {% else %}
+
+                <div class="details-no-poster">
+                    🎬
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- INFORMATION -->
+
+        <div class="details-info">
+
+            <p class="eyebrow">
+                MOVIE DETAILS
+            </p>
+
+            <h1>
+                {{ movie[1] }}
+            </h1>
+
+
+            <p class="details-item">
+                <strong>Genre:</strong>
+                {{ movie[2] }}
+            </p>
+
+
+            <p class="details-item">
+                <strong>Rating:</strong>
+                ⭐ {{ movie[3] }}/5
+            </p>
+
+
+            <p class="details-item">
+                <strong>Status:</strong>
+                {{ movie[4] }}
+            </p>
+
+
+            <div class="details-description">
+
+                <h2>
+                    Description
+                </h2>
+
+                <p>
+                    {{ movie[6] or "No description available." }}
+                </p>
 
             </div>
 
 
-            <div class="movie-info">
+            <!-- BUTTONS -->
 
-                <h1>{{ movie[1] }}</h1>
+            <div class="details-buttons">
 
-                <p>
-                    <strong>Genre:</strong> {{ movie[2] }}
-                </p>
+                <a href="#" class="watch-button">
+                    ▶ Watch
+                </a>
 
-                <p>
-                    <strong>Rating:</strong> ⭐ {{ movie[3] }}/5
-                </p>
-
-                <p>
-                    <strong>Status:</strong> {{ movie[4] }}
-                </p>
-
-
-                <div class="description">
-
-                    <h2>Description</h2>
-
-                    <p>
-                        {{ movie[6] or "No description available." }}
-                    </p>
-
-                </div>
-
-
-                <div class="buttons">
-
-                    <a href="#" class="watch-button">
-                        ▶ Watch
-                    </a>
-
-                    <a href="#" class="download-button">
-                        ⬇ Download
-                    </a>
-
-                </div>
+                <a href="#" class="download-button">
+                    ⬇ Download
+                </a>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <a href="/" class="back-link">
-            ← Back to Library
-        </a>
+    <a href="/" class="details-back">
+        ← Back to Movie Library
+    </a>
 
-    </main>
+
+</div>
 
 </body>
+
 </html>
