@@ -1,3 +1,5 @@
+/* GENERAL */
+
 body {
     font-family: sans-serif;
     color: #333;
@@ -12,18 +14,22 @@ body {
 }
 
 
-/* BANNER */
+/* MAIN BANNER */
 
 .banner {
+    display: flex;
+    align-items: flex-end;
     padding: 35px;
-    background: linear-gradient(
-        135deg,
-        #d9c7b8,
-        #eee4da
-    );
+    margin-bottom: 35px;
+    min-height: 150px;
+    border-radius: 10px;
 
-    border-radius: 12px;
-    margin-bottom: 25px;
+    background:
+        linear-gradient(
+            135deg,
+            #d9c7b8,
+            #eee4da
+        );
 }
 
 .banner-content {
@@ -45,6 +51,20 @@ body {
     letter-spacing: 1.5px;
     font-weight: bold;
     color: #777;
+}
+
+
+/* SMALL BANNER */
+
+.small-banner {
+    padding: 30px;
+    background: #e9e4de;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.small-banner h1 {
+    margin: 5px 0;
 }
 
 
@@ -134,7 +154,7 @@ textarea {
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 16px;
 }
 
@@ -146,22 +166,24 @@ textarea {
     border: 1px solid #e2e0dc;
     border-radius: 8px;
     padding: 12px;
-    min-height: 230px;
-
     display: flex;
     flex-direction: column;
 }
 
+.movie-card:hover {
+    transform: translateY(-2px);
+}
 
-/* MOVIE POSTER */
+
+/* MOVIE POSTER
+   This fixes the images being huge */
 
 .movie-poster {
     width: 100%;
-    height: 170px;
+    height: 280px;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-bottom: 12px;
-    background: #f0eee9;
 }
 
 .movie-poster img {
@@ -172,12 +194,11 @@ textarea {
 }
 
 
-/* MOVIE ICON */
+/* DEFAULT ICON */
 
 .movie-icon {
-    width: 35px;
-    height: 35px;
-
+    width: 50px;
+    height: 50px;
     background: #f0eee9;
     border-radius: 8px;
 
@@ -185,21 +206,20 @@ textarea {
     align-items: center;
     justify-content: center;
 
-    font-size: 20px;
-    margin: 5px;
+    font-size: 25px;
 }
 
 
-/* MOVIE INFO */
+/* MOVIE INFORMATION */
 
 .movie-info h3 {
     margin: 0 0 5px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .genre {
     color: #888;
-    margin: 0 0 8px;
+    margin: 0 0 12px;
     font-size: 13px;
 }
 
@@ -207,9 +227,9 @@ textarea {
 /* STARS */
 
 .stars {
-    font-size: 16px;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
     color: #d49b36;
 }
 
@@ -238,20 +258,18 @@ textarea {
 /* VIEW DETAILS */
 
 .movie-card > a {
-    color: #555;
+    color: #66538b;
     font-size: 13px;
     margin-top: 8px;
 }
 
 
-/* ACTIONS */
+/* EDIT + DELETE */
 
 .movie-actions {
-    margin-top: auto;
+    margin-top: 10px;
     padding-top: 10px;
-
     border-top: 1px solid #eee;
-
     display: flex;
     gap: 15px;
 }
@@ -259,34 +277,18 @@ textarea {
 .movie-actions a {
     color: #666;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 
-/* SMALL BANNER */
-
-.small-banner {
-    padding: 30px;
-    background: #e9e4de;
-    border-radius: 12px;
-    margin-bottom: 25px;
-}
-
-.small-banner h1 {
-    margin: 5px 0;
-}
-
-
-/* FORM */
+/* FORMS */
 
 .form-card {
     max-width: 500px;
     margin: auto;
-
     background: white;
     border: 1px solid #e2e0dc;
     border-radius: 10px;
-
     padding: 30px;
 }
 
@@ -298,7 +300,6 @@ textarea {
 .form-card label {
     font-size: 13px;
     font-weight: bold;
-
     margin-bottom: 6px;
     margin-top: 15px;
 }
@@ -307,22 +308,13 @@ textarea {
     margin-top: 0;
 }
 
-.form-card input,
-.form-card select,
-.form-card textarea {
-    width: 100%;
-}
-
 .form-card button {
     margin-top: 25px;
     padding: 11px;
-
     background: #37352f;
     color: white;
-
     border: none;
     border-radius: 6px;
-
     cursor: pointer;
     font-size: 14px;
 }
@@ -333,12 +325,9 @@ textarea {
 .back-link {
     display: block;
     width: fit-content;
-
     margin: 20px auto;
-
     color: #666;
     text-decoration: none;
-
     font-size: 13px;
 }
 
@@ -347,50 +336,38 @@ textarea {
 
 .empty {
     grid-column: 1 / -1;
-
     text-align: center;
-
     background: white;
     border: 1px dashed #ccc;
-
     border-radius: 8px;
     padding: 50px;
-
     color: #777;
 }
 
 
-/* MOVIE DETAILS */
+/* ---------------- MOVIE DETAILS ---------------- */
 
 .movie-section {
     display: flex;
     align-items: center;
-
     gap: 60px;
-
     padding: 50px;
-
     background-color: #8E1616;
-
     margin: 30px 40px;
-
     border-radius: 10px;
-
-    color: #fff;
+    color: white;
 }
 
 .movie-section .movie-poster {
     flex: 1;
     height: auto;
-    background: none;
+    overflow: visible;
 }
 
 .movie-section .movie-poster img {
     width: 300px;
     height: 420px;
-
     object-fit: cover;
-
     border-radius: 20px;
 }
 
@@ -419,15 +396,10 @@ textarea {
 .watch-button,
 .download-button {
     display: inline-block;
-
     padding: 12px 30px;
-
     margin-right: 10px;
-
     border-radius: 5px;
-
     text-decoration: none;
-
     font-weight: bold;
 }
 
@@ -444,23 +416,20 @@ textarea {
 
 /* MOBILE */
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
 
-    .movie-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .page {
+        width: 94%;
+        margin: 20px auto;
     }
 
-    .movie-poster {
-        height: 180px;
+    .banner {
+        min-height: 150px;
+        padding: 25px;
     }
 
-    .controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .search-form {
-        flex-direction: column;
+    .banner h1 {
+        font-size: 28px;
     }
 
     .top-bar {
@@ -469,512 +438,6 @@ textarea {
         flex-direction: column;
     }
 
-    .movie-section {
-        flex-direction: column;
-        margin: 20px 0;
-        padding: 30px;
-    }
-    }    font-size: 38px;
-    margin: 5px 0 10px;
-}
-
-.banner p {
-    margin: 5px 0;
-}
-
-.eyebrow {
-    font-size: 11px !important;
-    letter-spacing: 1.5px;
-    font-weight: bold;
-    color: #ddd;
-}
-
-
-/* ---------------- TOP BAR ---------------- */
-
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 20px;
-}
-
-.top-bar h2 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.subtitle {
-    color: #888;
-    margin-top: 5px;
-}
-
-
-/* ---------------- ADD BUTTON ---------------- */
-
-.add-button {
-    background-color: #d8507c;
-    color: white;
-
-    padding: 10px 16px;
-
-    border-radius: 5px;
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: bold;
-}
-
-
-/* ---------------- SEARCH ---------------- */
-
-.controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    margin-bottom: 30px;
-}
-
-.search-form {
-    display: flex;
-    gap: 8px;
-    flex: 1;
-}
-
-.search-form input {
-    flex: 1;
-}
-
-input,
-select,
-textarea {
-    border: 1px solid #d5d2cd;
-    background-color: white;
-
-    border-radius: 6px;
-    padding: 10px;
-
-    font-size: 14px;
-}
-
-.search-form button {
-    border: none;
-
-    background-color: #37352f;
-    color: white;
-
-    padding: 10px 16px;
-
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.show-all {
-    text-decoration: none;
-    color: #666;
-
-    padding: 9px 12px;
-
-    border: 1px solid #d5d2cd;
-    background-color: white;
-
-    border-radius: 6px;
-}
-
-
-/* ---------------- MOVIE GRID ---------------- */
-
-.movie-grid {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 35px;
-
-    margin: 20px 10px 50px;
-}
-
-
-/* ---------------- MOVIE CARD ---------------- */
-
-.movie-card {
-    background-color: white;
-
-    padding: 0;
-
-    border-radius: 8px;
-
-    display: flex;
-    flex-direction: column;
-}
-
-
-/* ---------------- MOVIE POSTER ---------------- */
-
-.movie-poster {
-    width: 100%;
-    height: 330px;
-
-    overflow: hidden;
-
-    border-radius: 8px;
-
-    margin-bottom: 12px;
-
-    background-color: #f0eee9;
-}
-
-.movie-poster img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-}
-
-
-/* ---------------- MOVIE ICON ---------------- */
-
-.movie-icon {
-    width: 50px;
-    height: 50px;
-
-    background-color: #f0eee9;
-
-    border-radius: 8px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
-
-    margin: 10px;
-}
-
-
-/* ---------------- MOVIE INFORMATION ---------------- */
-
-.movie-info h3 {
-    margin: 0 0 5px;
-    font-size: 16px;
-}
-
-.genre {
-    color: #888;
-
-    margin: 0 0 8px;
-
-    font-size: 13px;
-}
-
-
-/* ---------------- STARS ---------------- */
-
-.stars {
-    font-size: 16px;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 8px;
-
-    color: #d49b36;
-}
-
-
-/* ---------------- STATUS ---------------- */
-
-.status {
-    display: inline-block;
-
-    width: fit-content;
-
-    padding: 5px 8px;
-
-    border-radius: 5px;
-
-    font-size: 11px;
-}
-
-.watched {
-    background-color: #e5f0e5;
-    color: #477047;
-}
-
-.planning {
-    background-color: #eeeaf6;
-    color: #66538b;
-}
-
-
-/* ---------------- VIEW DETAILS ---------------- */
-
-.movie-card > a {
-    color: #555;
-    font-size: 13px;
-
-    margin-top: 8px;
-
-    text-decoration: underline;
-}
-
-
-/* ---------------- EDIT / DELETE ---------------- */
-
-.movie-actions {
-    margin-top: 8px;
-
-    padding-top: 8px;
-
-    border-top: 1px solid #eee;
-
-    display: flex;
-
-    gap: 15px;
-}
-
-.movie-actions a {
-    color: #777;
-
-    text-decoration: none;
-
-    font-size: 12px;
-}
-
-.movie-actions a:hover {
-    text-decoration: underline;
-}
-
-
-/* ---------------- SMALL BANNER ---------------- */
-
-.small-banner {
-    padding: 30px;
-
-    background-color: #e9e4de;
-
-    border-radius: 12px;
-
-    margin-bottom: 25px;
-}
-
-.small-banner h1 {
-    margin: 5px 0;
-}
-
-.small-banner p {
-    margin: 5px 0;
-}
-
-
-/* ---------------- FORM ---------------- */
-
-.form-card {
-    max-width: 500px;
-
-    margin: auto;
-
-    background-color: white;
-
-    border: 1px solid #e2e0dc;
-
-    border-radius: 10px;
-
-    padding: 30px;
-}
-
-.form-card form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-card label {
-    font-size: 13px;
-
-    font-weight: bold;
-
-    margin-top: 15px;
-    margin-bottom: 6px;
-}
-
-.form-card label:first-child {
-    margin-top: 0;
-}
-
-.form-card input,
-.form-card select,
-.form-card textarea {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.form-card button {
-    margin-top: 25px;
-
-    padding: 11px;
-
-    background-color: #37352f;
-    color: white;
-
-    border: none;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-}
-
-
-/* ---------------- BACK LINK ---------------- */
-
-.back-link {
-    display: block;
-
-    width: fit-content;
-
-    margin: 25px auto;
-
-    color: #666;
-
-    text-decoration: none;
-
-    font-size: 13px;
-}
-
-
-/* ---------------- MOVIE DETAILS ---------------- */
-/* Kept separate so the details page stays the same */
-
-.movie-section {
-    display: flex;
-
-    align-items: center;
-
-    gap: 60px;
-
-    padding: 50px;
-
-    background-color: #8E1616;
-
-    margin: 30px 40px;
-
-    border-radius: 10px;
-
-    color: #fff;
-}
-
-.movie-section .movie-poster {
-    flex: 1;
-
-    height: auto;
-
-    background: none;
-}
-
-.movie-section .movie-poster img {
-    width: 300px;
-    height: 420px;
-
-    object-fit: cover;
-
-    border-radius: 20px;
-}
-
-.movie-section .movie-info {
-    flex: 1;
-}
-
-.movie-section .movie-info h1 {
-    font-size: 48px;
-
-    margin-bottom: 25px;
-}
-
-.movie-section .movie-info p {
-    font-size: 18px;
-
-    line-height: 1.6;
-}
-
-.description {
-    margin-top: 25px;
-}
-
-.buttons {
-    margin-top: 30px;
-}
-
-.watch-button,
-.download-button {
-    display: inline-block;
-
-    padding: 12px 30px;
-
-    margin-right: 10px;
-
-    border-radius: 5px;
-
-    text-decoration: none;
-
-    font-weight: bold;
-}
-
-.watch-button {
-    background-color: #d8507c;
-    color: white;
-}
-
-.download-button {
-    background-color: white;
-    color: #8E1616;
-}
-
-
-/* ---------------- EMPTY ---------------- */
-
-.empty {
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    background-color: white;
-
-    border: 1px dashed #ccc;
-
-    border-radius: 8px;
-
-    padding: 50px;
-
-    color: #777;
-}
-
-
-/* ---------------- MOBILE ---------------- */
-
-@media (max-width: 800px) {
-
-    .movie-grid {
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 25px;
-    }
-
-    .movie-poster {
-        height: 280px;
-    }
-
-    .banner {
-        padding: 25px;
-    }
-
-    .banner h1 {
-        font-size: 28px;
-    }
-
     .controls {
         flex-direction: column;
         align-items: stretch;
@@ -984,328 +447,27 @@ textarea {
         flex-direction: column;
     }
 
-    .movie-section {
-        flex-direction: column;
-
-        margin: 20px 0;
-
-        padding: 30px;
-    }
-}
-
-
-@media (max-width: 500px) {
-
     .movie-grid {
         grid-template-columns: repeat(2, 1fr);
-
-        gap: 20px;
     }
 
     .movie-poster {
-        height: 230px;
-    }
-
-    .movie-card {
-        font-size: 13px;
-    }
-
-    .banner {
-        min-height: 150px;
-    }
-
-    .banner h1 {
-        font-size: 24px;
-    }
-
-    }    margin: 5px 0;
-}
-
-.eyebrow {
-    font-size: 11px !important;
-    letter-spacing: 1.5px;
-    font-weight: bold;
-}
-
-/* SMALL BANNER */
-
-.small-banner {
-    padding: 30px;
-    background: #e9e4de;
-    border-radius: 12px;
-    margin-bottom: 25px;
-}
-
-.small-banner h1 {
-    margin: 5px 0;
-}
-
-/* MOVIE SECTION */
-
-.top-bar {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.top-bar h2 {
-    text-decoration: underline;
-    font-family: "Courier New", monospace;
-}
-
-.subtitle {
-    color: #888;
-}
-
-.add-button {
-    display: inline-block;
-    background: #8E1616;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-/* SEARCH */
-
-.controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.search-form {
-    display: flex;
-    gap: 8px;
-    flex: 1;
-}
-
-input, select {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.search-form input {
-    flex: 1;
-}
-
-.search-form button {
-    background: #8E1616;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 5px;
-}
-
-.show-all {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-decoration: none;
-    color: #555;
-}
-
-/* MOVIE GRID */
-
-.movie-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 35px;
-}
-
-.movie-card {
-    text-align: left;
-}
-
-.movie-poster {
-    width: 100%;
-    height: 300px;
-    margin-bottom: 10px;
-}
-
-.movie-poster img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.movie-info h3 {
-    margin: 5px 0;
-    font-size: 16px;
-}
-
-.genre {
-    color: #888;
-    font-size: 13px;
-    margin: 5px 0;
-}
-
-.stars {
-    color: #d49b36;
-    margin: 5px 0;
-}
-
-.status {
-    font-size: 11px;
-    padding: 4px 7px;
-    border-radius: 4px;
-}
-
-.watched {
-    background: #e5f0e5;
-    color: #477047;
-}
-
-.planning {
-    background: #eeeaf6;
-    color: #66538b;
-}
-
-.movie-card > a {
-    color: #555;
-    font-size: 13px;
-}
-
-.movie-actions {
-    margin-top: 10px;
-    display: flex;
-    gap: 15px;
-}
-
-.movie-actions a {
-    color: #777;
-    text-decoration: none;
-    font-size: 12px;
-}
-
-/* FORM */
-
-.form-card {
-    max-width: 500px;
-    margin: auto;
-    padding: 30px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-}
-
-.form-card form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-card label {
-    margin: 12px 0 5px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.form-card textarea {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.form-card button {
-    margin-top: 20px;
-    padding: 11px;
-    background: #8E1616;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-.back-link {
-    display: block;
-    width: fit-content;
-    margin: 25px auto;
-    color: #666;
-    text-decoration: none;
-}
-
-/* MOVIE DETAILS */
-
-.movie-section {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    padding: 50px;
-    background-color: #8E1616;
-    margin: 30px 40px;
-    border-radius: 10px;
-    color: #fff;
-}
-
-.movie-section .movie-poster {
-    flex: 1;
-    text-align: center;
-}
-
-.movie-section .movie-poster img {
-    width: 300px;
-    height: 420px;
-    object-fit: cover;
-    border-radius: 20px;
-}
-
-.movie-section .movie-info {
-    flex: 1;
-}
-
-.movie-section .movie-info h1 {
-    font-size: 48px;
-}
-
-.description {
-    margin-top: 25px;
-}
-
-.buttons {
-    margin-top: 30px;
-}
-
-.watch-button,
-.download-button {
-    display: inline-block;
-    padding: 12px 30px;
-    margin-right: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.watch-button {
-    background: #d8507c;
-    color: white;
-}
-
-.download-button {
-    background: white;
-    color: #8E1616;
-}
-
-/* MOBILE */
-
-@media (max-width: 700px) {
-    .movie-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .movie-poster {
-        height: 250px;
-    }
-
-    .controls {
-        flex-direction: column;
+        height: 220px;
     }
 
     .movie-section {
         flex-direction: column;
-        margin: 15px;
+        margin: 15px 0;
         padding: 25px;
+        gap: 25px;
+    }
+
+    .movie-section .movie-poster img {
+        width: 100%;
+        max-width: 300px;
+        height: 420px;
     }
 
     .movie-section .movie-info h1 {
         font-size: 32px;
     }
-}
