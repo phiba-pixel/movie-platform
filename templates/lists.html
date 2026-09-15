@@ -10,59 +10,78 @@
 
 </head>
 
+
 <body>
 
-<div class="page">
+
+<header class="movie-header">
+
+    <div class="movie-logo">
+        My Movie Library 🎬
+    </div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/movie">Add Movie</a>
+    </nav>
+
+</header>
 
 
-    <!-- BANNER -->
+<main>
 
-    <div class="banner">
 
-        <div class="banner-content">
+    <!-- HERO BANNER -->
 
-            <p class="eyebrow">
+    <section class="movie-banner">
+
+        <div class="movie-banner-content">
+
+            <p class="movie-eyebrow">
                 PERSONAL COLLECTION
             </p>
 
-            <h1>My Movie Library 🎬</h1>
+            <h1>
+                My Movie Library 🎬
+            </h1>
 
             <p>
-                A little corner for all the movies
-                I want to watch.
+                A little corner for all the movies I want to watch.
             </p>
+
+            <a href="/movie" class="movie-main-button">
+                Add Movie
+            </a>
 
         </div>
 
-    </div>
 
+        <div class="banner-posters">
 
-    <!-- TOP BAR -->
+            {% for movie in movies[:3] %}
 
-    <div class="top-bar">
+                {% if movie[5] %}
 
-        <div>
+                    <img
+                        src="{{ movie[5] }}"
+                        alt="{{ movie[1] }}"
+                    >
 
-            <h2>Movies</h2>
+                {% endif %}
 
-            <p class="subtitle">
-                {{ movies|length }} movie(s) in your library
-            </p>
+            {% endfor %}
 
         </div>
 
-        <a class="add-button" href="/movie">
-            + Add Movie
-        </a>
-
-    </div>
+    </section>
 
 
-    <!-- SEARCH + SORT -->
 
-    <div class="controls">
+    <!-- SEARCH -->
 
-        <form action="/" method="GET" class="search-form">
+    <section class="movie-controls">
+
+        <form action="/" method="GET">
 
             <input
                 type="text"
@@ -81,12 +100,12 @@
 
                 <option value="rating_high"
                     {% if sort == "rating_high" %}selected{% endif %}>
-                    ⭐ Rating: Highest → Lowest
+                    Rating: Highest → Lowest
                 </option>
 
                 <option value="rating_low"
                     {% if sort == "rating_low" %}selected{% endif %}>
-                    ⭐ Rating: Lowest → Highest
+                    Rating: Lowest → Highest
                 </option>
 
                 <option value="status"
@@ -101,79 +120,80 @@
                 Search
             </button>
 
+            <a href="/">
+                Clear
+            </a>
+
         </form>
 
-
-        <a class="show-all" href="/">
-            Clear
-        </a>
-
-    </div>
+    </section>
 
 
-    <!-- MOVIE GRID -->
 
-    <div class="movie-grid">
+    <!-- CATALOG -->
 
-        {% for movie in movies %}
+    <section class="movie-catalog">
 
-        <div class="movie-card">
+        <h2>
+            Movies
+        </h2>
 
-
-            <!-- MOVIE POSTER -->
-            
-            <div class="movie-poster">
-
-    {% if movie[5] %}
-
-        <img
-            src="{{ movie[5] }}"
-            alt="{{ movie[1] }} poster"
-        >
-
-    {% else %}
-
-        <div class="movie-icon">
-            🎬
-        </div>
-
-    {% endif %}
-
-</div>
+        <p class="catalog-subtitle">
+            {{ movies|length }} movie(s) in your library
+        </p>
 
 
-            <!-- MOVIE INFORMATION -->
+        <div class="movie-catalog-grid">
 
-            <div class="movie-info">
+
+            {% for movie in movies %}
+
+            <div class="catalog-movie">
+
+
+                <!-- POSTER -->
+
+                {% if movie[5] %}
+
+                    <img
+                        src="{{ movie[5] }}"
+                        alt="{{ movie[1] }} poster"
+                    >
+
+                {% else %}
+
+                    <div class="no-poster">
+                        🎬
+                    </div>
+
+                {% endif %}
+
+
+                <!-- MOVIE INFO -->
 
                 <h3>
                     {{ movie[1] }}
                 </h3>
 
-                <p class="genre">
+                <p class="catalog-genre">
                     {{ movie[2] }}
                 </p>
 
 
                 <!-- RATING -->
 
-                <div class="stars">
+                <div class="catalog-stars">
 
                     {% if movie[3] == 1 %}
                         ★☆☆☆☆
-
                     {% elif movie[3] == 2 %}
                         ★★☆☆☆
-
                     {% elif movie[3] == 3 %}
                         ★★★☆☆
-
                     {% elif movie[3] == 4 %}
                         ★★★★☆
-
                     {% elif movie[3] == 5 %}
                         ★★★★★
-
                     {% endif %}
 
                 </div>
@@ -195,49 +215,68 @@
 
                 {% endif %}
 
-            </div>
 
-            <a href ="/movie/{{movie[0]}}">View Details</a>
-
-
-            <!-- ACTIONS -->
-
-            <div class="movie-actions">
-
-                <a href="/edit/{{ movie[0] }}">
-                    Edit
-                </a>
+                <!-- DETAILS -->
 
                 <a
-                    href="/delete/{{ movie[0] }}"
-                    onclick="return confirm('Delete this movie?')"
+                    href="/movie/{{ movie[0] }}"
+                    class="details-link"
                 >
-                    Delete
+                    View Details
                 </a>
+
+
+                <!-- EDIT / DELETE -->
+
+                <div class="catalog-actions">
+
+                    <a href="/edit/{{ movie[0] }}">
+                        Edit
+                    </a>
+
+                    <a
+                        href="/delete/{{ movie[0] }}"
+                        onclick="return confirm('Delete this movie?')"
+                    >
+                        Delete
+                    </a>
+
+                </div>
+
 
             </div>
 
 
+            {% else %}
+
+            <div class="empty">
+                <h3>No movies found 🍿</h3>
+
+                <p>
+                    Try another search or add a new movie.
+                </p>
+            </div>
+
+            {% endfor %}
+
+
         </div>
 
-        {% else %}
-
-        <div class="empty">
-
-            <h3>No movies found 🍿</h3>
-
-            <p>
-                Try another search or add a new movie.
-            </p>
-
-        </div>
-
-        {% endfor %}
-
-    </div>
+    </section>
 
 
-</div>
+</main>
+
+
+<footer class="movie-footer">
+
+    <p>
+        My Movie Library 🎬
+    </p>
+
+</footer>
+
 
 </body>
-                  </html>
+
+</html>
