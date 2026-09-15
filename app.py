@@ -23,14 +23,20 @@ CREATE TABLE IF NOT EXISTS movies (
 )
 """)
 
-# Add image_url column if an older table already exists
+# Add columns if an older table already exists
 cursor.execute("""
 ALTER TABLE movies
 ADD COLUMN IF NOT EXISTS image_url TEXT
 """)
+
 cursor.execute("""
 ALTER TABLE movies
 ADD COLUMN IF NOT EXISTS description TEXT
+""")
+
+cursor.execute("""
+ALTER TABLE movies
+ADD COLUMN IF NOT EXISTS watch_url TEXT
 """)
 
 conn.commit()
@@ -43,74 +49,68 @@ def home():
 
     keyword = request.args.get("keyword", "")
     sort = request.args.get("sort", "title")
+    genre = request.args.get("genre", "")
 
-    # Search + Sort
-    if keyword:
+    search_value = "%" + keyword + "%"
 
-        search_value = "%" + keyword + "%"
+    # Search + Genre + Sort
 
-        if sort == "rating_high":
-            cursor.execute("""
-                SELECT * FROM movies
-                WHERE title ILIKE %s
-                ORDER BY rating DESC
-            """, (search_value,))
+    if sort == "rating_high":
 
-        elif sort == "rating_low":
-            cursor.execute("""
-                SELECT * FROM movies
-                WHERE title ILIKE %s
-                ORDER BY rating ASC
-            """, (search_value,))
+        cursor.execute("""
+            SELECT * FROM movies
+            WHERE title ILIKE %s
+            AND (%s = '' OR genre = %s)
+            ORDER BY rating DESC
+        """, (search_value, genre, genre))
 
-        elif sort == "status":
-            cursor.execute("""
-                SELECT * FROM movies
-                WHERE title ILIKE %s
-                ORDER BY status ASC
-            """, (search_value,))
+    elif sort == "rating_low":
 
-        else:
-            cursor.execute("""
-                SELECT * FROM movies
-                WHERE title ILIKE %s
-                ORDER BY title ASC
-            """, (search_value,))
+        cursor.execute("""
+            SELECT * FROM movies
+            WHERE title ILIKE %s
+            AND (%s = '' OR genre = %s)
+            ORDER BY rating ASC
+        """, (search_value, genre, genre))
 
-    # Sort without search
+    elif sort == "status":
+
+        cursor.execute("""
+            SELECT * FROM movies
+            WHERE title ILIKE %s
+            AND (%s = '' OR genre = %s)
+            ORDER BY status ASC
+        """, (search_value, genre, genre))
+
     else:
 
-        if sort == "rating_high":
-            cursor.execute("""
-                SELECT * FROM movies
-                ORDER BY rating DESC
-            """)
-
-        elif sort == "rating_low":
-            cursor.execute("""
-                SELECT * FROM movies
-                ORDER BY rating ASC
-            """)
-
-        elif sort == "status":
-            cursor.execute("""
-                SELECT * FROM movies
-                ORDER BY status ASC
-            """)
-
-        else:
-            cursor.execute("""
-                SELECT * FROM movies
-                ORDER BY title ASC
-            """)
+        cursor.execute("""
+            SELECT * FROM movies
+            WHERE title ILIKE %s
+            AND (%s = '' OR genre = %s)
+            ORDER BY title ASC
+        """, (search_value, genre, genre))
 
     movies = cursor.fetchall()
+
+    # Get all genres for the filter
+    cursor.execute("""
+        SELECT DISTINCT genre
+        FROM movies
+        WHERE genre IS NOT NULL
+        AND genre != ''
+        ORDER BY genre ASC
+    """)
+
+    genres = cursor.fetchall()
 
     return render_template(
         "lists.html",
         movies=movies,
         keyword=keyword,
-        sort=sort
+        sort=sort,
+        genre=genre,
+        genres=genres
     )
 
 
@@ -131,18 +131,37 @@ def add_movie():
     rating = request.form["rating"]
     status = request.form["status"]
     image_url = request.form.get("image_url", "")
-    description = request.form.get("description","")
+    description = request.form.get("description", "")
+    watch_url = request.form.get("watch_url", "")
 
     cursor.execute("""
-        INSERT INTO movies(title, genre, rating, status, image_url, description)
-        VALUES (%s, %s, %s, %s, %s, %s)
-    """, (title, genre, rating, status, image_url, description))
+        INSERT INTO movies(
+            title,
+            genre,
+            rating,
+            status,
+            image_url,
+            description,
+            watch_url
+        )
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """, (
+        title,
+        genre,
+        rating,
+        status,
+        image_url,
+        description,
+        watch_url
+    ))
 
     conn.commit()
 
     return redirect("/")
 
-#---------------MOVIE DETAILS-------------
+
+# ---------------- MOVIE DETAILS ----------------
+
 @app.route("/movie/<int:id>")
 def movie_details(id):
 
@@ -152,11 +171,13 @@ def movie_details(id):
     )
 
     movie = cursor.fetchone()
-    
+
     return render_template(
         "movie_details.html",
-    movie=movie
-)
+        movie=movie
+    )
+
+
 # ---------------- DELETE MOVIE ----------------
 
 @app.route("/delete/<int:id>")
@@ -200,7 +221,8 @@ def update_movie(id):
     rating = request.form["rating"]
     status = request.form["status"]
     image_url = request.form.get("image_url", "")
-    description = request.form.get("description","")
+    description = request.form.get("description", "")
+    watch_url = request.form.get("watch_url", "")
 
     cursor.execute("""
         UPDATE movies
@@ -209,9 +231,19 @@ def update_movie(id):
             rating = %s,
             status = %s,
             image_url = %s,
-            description = %s
+            description = %s,
+            watch_url = %s
         WHERE id = %s
-    """, (title, genre, rating, status, image_url, description, id))
+    """, (
+        title,
+        genre,
+        rating,
+        status,
+        image_url,
+        description,
+        watch_url,
+        id
+    ))
 
     conn.commit()
 
