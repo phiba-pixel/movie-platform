@@ -1,31 +1,96 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{movie[1] }}</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')  }}">
-  </head>
-  <body>
-    <div class="movie-details">
-      {% if movie[5]%}
-      <div class="movie-poster">
-        <img src="{{movie[5] }}" alt="{{movie[1] }}">
-      </div>
-      {% endif %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      <h1>{{movie[1]}}</h1>
-      <p><strong>Genre:</strong>{{movie[2]}}</p>
-      <p><strong>Rating:</strong>⭐{{movie[3]}}/5</p>
-      <p><strong>Status:</strong>{{movie[4]}}</p>
-      <h2>Description</h2>
-      <p>{{movie[6] or "No description available." }}</p>
+    <title>{{ movie[1] }}</title>
 
-      <div>
-        <a href="#" class="watch-button">▶ Watch</a>
-        <a href="#" class="download-button">↓  Download</a>
-      </div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
-      <a href="/">← Back To Library</a>
+<body>
 
-    </div>
-  </body>
+    <header class="main-header">
+
+        <nav class="nav-bar">
+
+            <div class="logo">
+                Movie Platform
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="movie-section">
+
+            <div class="movie-poster">
+
+                {% if movie[5] %}
+                    <img src="{{ movie[5] }}" alt="{{ movie[1] }}">
+                {% endif %}
+
+            </div>
+
+
+            <div class="movie-info">
+
+                <h1>{{ movie[1] }}</h1>
+
+                <p>
+                    <strong>Genre:</strong> {{ movie[2] }}
+                </p>
+
+                <p>
+                    <strong>Rating:</strong> ⭐ {{ movie[3] }}/5
+                </p>
+
+                <p>
+                    <strong>Status:</strong> {{ movie[4] }}
+                </p>
+
+
+                <div class="description">
+
+                    <h2>Description</h2>
+
+                    <p>
+                        {{ movie[6] or "No description available." }}
+                    </p>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <a href="#" class="watch-button">
+                        ▶ Watch
+                    </a>
+
+                    <a href="#" class="download-button">
+                        ⬇ Download
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <a href="/" class="back-link">
+            ← Back to Library
+        </a>
+
+    </main>
+
+</body>
 </html>
