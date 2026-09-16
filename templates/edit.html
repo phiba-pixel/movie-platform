@@ -64,9 +64,15 @@
                 value="{{ movie[2] }}"
             >
 
+
             <label>Description</label>
-            <textarea name="description" rows="4"
-            placeholder="Write a short description...">{{movie[6] or ''}}</textarea>
+
+            <textarea
+                name="description"
+                rows="4"
+                placeholder="Write a short description..."
+            >{{ movie[6] or '' }}</textarea>
+
 
             <label>Movie Poster Image URL</label>
 
@@ -75,7 +81,17 @@
                 name="image_url"
                 value="{{ movie[5] or '' }}"
                 placeholder="Paste image link here"
-                >
+            >
+
+
+            <label>Where to Watch URL</label>
+
+            <input
+                type="url"
+                name="watch_url"
+                value="{{ movie[7] or '' }}"
+                placeholder="Paste official streaming link here"
+            >
 
 
             <label>Rating</label>
@@ -149,4 +165,5 @@
 </div>
 
 </body>
-              </html>
+
+</html>
