@@ -1,7 +1,7 @@
 body {
     font-family: sans-serif;
-    color: #333;
-    background: #f7f6f2;
+    color: #4b4946;
+    background: #f8f5f1;
     margin: 0;
 }
 
@@ -20,8 +20,8 @@ body {
     background:
         linear-gradient(
             135deg,
-            #d9c7b8,
-            #eee4da
+            #d9e3d5,
+            #eee8f1
         );
 
     display: flex;
@@ -37,7 +37,7 @@ body {
 
 
 .banner-content {
-    color: #2f2f2f;
+    color: #454441;
 }
 
 
@@ -60,7 +60,7 @@ body {
 .small-banner {
     padding: 30px;
 
-    background: #e9e4de;
+    background: #ebe5ee;
 
     border-radius: 12px;
 
@@ -82,7 +82,7 @@ body {
 
     font-weight: bold;
 
-    color: #777;
+    color: #7d7975;
 }
 
 
@@ -107,7 +107,7 @@ body {
 
 
 .subtitle {
-    color: #888;
+    color: #85817d;
 
     margin-top: 5px;
 }
@@ -116,7 +116,7 @@ body {
 /* ADD BUTTON */
 
 .add-button {
-    background: #37352f;
+    background: #71806b;
 
     color: white;
 
@@ -131,7 +131,7 @@ body {
 
 
 .add-button:hover {
-    background: #55514a;
+    background: #5f6d59;
 }
 
 
@@ -165,9 +165,9 @@ body {
 input,
 select,
 textarea {
-    border: 1px solid #d5d2cd;
+    border: 1px solid #d9d4d0;
 
-    background: white;
+    background: #fffdfb;
 
     border-radius: 6px;
 
@@ -176,20 +176,24 @@ textarea {
     font-size: 14px;
 
     outline: none;
+
+    color: #4b4946;
 }
 
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #999;
+    border-color: #a8b5a1;
 }
 
+
+/* SEARCH BUTTON */
 
 .search-form button {
     border: none;
 
-    background: #37352f;
+    background: #71806b;
 
     color: white;
 
@@ -201,16 +205,23 @@ textarea:focus {
 }
 
 
+.search-form button:hover {
+    background: #5f6d59;
+}
+
+
+/* SHOW ALL */
+
 .show-all {
     text-decoration: none;
 
-    color: #666;
+    color: #6f6b67;
 
     padding: 9px 12px;
 
-    border: 1px solid #d5d2cd;
+    border: 1px solid #d9d4d0;
 
-    background: white;
+    background: #fffdfb;
 
     border-radius: 6px;
 }
@@ -231,9 +242,9 @@ textarea:focus {
 /* MOVIE CARD */
 
 .movie-card {
-    background: white;
+    background: #fffdfb;
 
-    border: 1px solid #e2e0dc;
+    border: 1px solid #e5dfda;
 
     border-radius: 8px;
 
@@ -253,7 +264,7 @@ textarea:focus {
     transform: translateY(-2px);
 
     box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.06);
+        0 4px 15px rgba(90, 80, 70, 0.08);
 }
 
 
@@ -264,7 +275,7 @@ textarea:focus {
 
     height: 50px;
 
-    background: #f0eee9;
+    background: #eee9e3;
 
     border-radius: 8px;
 
@@ -281,7 +292,6 @@ textarea:focus {
 
 
 /* MOVIE POSTER */
-/* Added to make poster images fit inside the cards */
 
 .movie-poster {
     width: 100%;
@@ -317,7 +327,7 @@ textarea:focus {
 
 
 .genre {
-    color: #888;
+    color: #85817d;
 
     margin: 0 0 12px;
 
@@ -334,7 +344,7 @@ textarea:focus {
 
     margin-bottom: 12px;
 
-    color: #d49b36;
+    color: #c99b63;
 }
 
 
@@ -354,16 +364,16 @@ textarea:focus {
 
 
 .watched {
-    background: #e5f0e5;
+    background: #e1ecdf;
 
-    color: #477047;
+    color: #587052;
 }
 
 
 .planning {
-    background: #eeeaf6;
+    background: #ebe5f1;
 
-    color: #66538b;
+    color: #756489;
 }
 
 
@@ -374,7 +384,7 @@ textarea:focus {
 
     padding-top: 15px;
 
-    border-top: 1px solid #eee;
+    border-top: 1px solid #eee9e5;
 
     display: flex;
 
@@ -383,7 +393,7 @@ textarea:focus {
 
 
 .movie-actions a {
-    color: #666;
+    color: #706c68;
 
     text-decoration: none;
 
@@ -399,7 +409,7 @@ textarea:focus {
 /* VIEW DETAILS */
 
 .movie-card > a {
-    color: #666;
+    color: #6f6b67;
 
     font-size: 13px;
 
@@ -414,9 +424,9 @@ textarea:focus {
 
     margin: auto;
 
-    background: white;
+    background: #fffdfb;
 
-    border: 1px solid #e2e0dc;
+    border: 1px solid #e5dfda;
 
     border-radius: 10px;
 
@@ -461,7 +471,7 @@ textarea:focus {
 
     padding: 11px;
 
-    background: #37352f;
+    background: #71806b;
 
     color: white;
 
@@ -476,7 +486,7 @@ textarea:focus {
 
 
 .form-card button:hover {
-    background: #55514a;
+    background: #5f6d59;
 }
 
 
@@ -489,7 +499,7 @@ textarea:focus {
 
     margin: 20px auto;
 
-    color: #666;
+    color: #706c68;
 
     text-decoration: none;
 
@@ -504,20 +514,19 @@ textarea:focus {
 
     text-align: center;
 
-    background: white;
+    background: #fffdfb;
 
-    border: 1px dashed #ccc;
+    border: 1px dashed #d8d0ca;
 
     border-radius: 8px;
 
     padding: 50px;
 
-    color: #777;
+    color: #77716c;
 }
 
 
 /* MOVIE DETAILS */
-/* Added for the individual movie page */
 
 .movie-section {
     display: flex;
@@ -528,13 +537,13 @@ textarea:focus {
 
     padding: 50px;
 
-    background-color: #8E1616;
+    background-color: #b8c7b0;
 
     margin: 30px 40px;
 
     border-radius: 10px;
 
-    color: #fff;
+    color: #3f433d;
 }
 
 
@@ -587,6 +596,8 @@ textarea:focus {
 }
 
 
+/* WATCH BUTTON */
+
 .watch-button,
 .download-button {
     display: inline-block;
@@ -604,16 +615,16 @@ textarea:focus {
 
 
 .watch-button {
-    background-color: #d8507c;
+    background-color: #8d7ba8;
 
     color: white;
 }
 
 
 .download-button {
-    background-color: white;
+    background-color: #fffdfb;
 
-    color: #8E1616;
+    color: #71806b;
 }
 
 
@@ -676,4 +687,4 @@ textarea:focus {
         height: auto;
     }
 
-}
+    }
