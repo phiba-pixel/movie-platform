@@ -107,17 +107,27 @@
             </div>
 
 
-            <!-- BUTTONS -->
+            <!-- WHERE TO WATCH -->
 
             <div class="details-buttons">
 
-                <a href="#" class="watch-button">
-                    ▶ Watch
-                </a>
+                {% if movie[7] %}
 
-                <a href="#" class="download-button">
-                    ⬇ Download
-                </a>
+                    <a
+                        href="{{ movie[7] }}"
+                        class="watch-button"
+                        target="_blank"
+                    >
+                        ▶ Where to Watch
+                    </a>
+
+                {% else %}
+
+                    <p>
+                        Where to Watch information is not available.
+                    </p>
+
+                {% endif %}
 
             </div>
 
